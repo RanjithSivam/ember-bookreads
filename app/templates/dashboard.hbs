@@ -1,0 +1,49 @@
+<div class="container" id="dashboard">
+    <div class="input-container">
+        {{input type="text" value=search placeholder="Enter to search books"}}
+    </div>
+    <div class="profile-container">
+        <button {{action 'logout'}}>Logout</button>
+    </div>
+    <div class="books-container">
+    {{#each watchlist as |book|}}
+        <div class="card">
+            <img class="card-img-top" src="https://dummyimage.com/286x180/aaa/fff" alt="Card image cap" />
+            <div class="card-body">
+                <h3 class="card-title">{{book.title}}</h3>
+                <small class="card-subtitle mb-2 text-muted">
+                <b>{{book.author}}</b>
+                </small>
+                <small class="card-subtitle mb-2 text-muted">
+                <i>{{book.genre}}</i>
+                </small>
+                <div><small class="card-text">{{book.description}}</small></div>
+                {{#if book.watched}}
+                <button type="button" class="btn btn-success" {{action 'watchlist' book.id}}>remove from watchlist</button>
+                {{else}}
+                <button type="button" class="btn btn-primary" {{action 'watchlist' book.id}}>add to watchlist</button>
+                {{/if}}
+            </div>
+        </div>
+    {{/each}}
+    </div>
+    <nav aria-label="Page navigation" class="page-navigation">
+        <ul class="pagination">
+            <li class={{if backDisable "page-item disable" "page-item"}}>
+            <a class="page-link" href="#" aria-label="Previous" {{action 'goBack' on='click'}} >
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+            </li>
+            {{#each page as |index|}}
+            <li class="page-item">
+                {{#link-to 'dashboard' (query-params current=index) class="page-link"}}{{index}}{{/link-to}}
+            </li>
+            {{/each}}
+            <li class={{if nextDisable "page-item disable" "page-item"}}>
+            <a class="page-link" href="#" aria-label="Next" {{action 'goNext' on='click'}}>
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+            </li>
+        </ul>
+    </nav>
+</div>

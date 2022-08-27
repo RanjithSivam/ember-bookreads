@@ -1,0 +1,32 @@
+#dashboard .books-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+#dashboard.container{
+    height: 100%;
+    display: grid;
+    grid-template-rows: 10% 80% 10%;
+    gap: 2rem;
+}
+
+#dashboard .input-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+#dashboard .input-container input{
+    width: 250px;
+}
+
+#dashboard .page-navigation{
+    display: flex;
+    justify-content: center;
+}
+
+#dashboard .page-item.disable{
+    pointer-events: none;
+}
